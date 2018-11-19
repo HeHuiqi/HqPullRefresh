@@ -27,10 +27,9 @@
 - (void)setScrollView:(UIScrollView *)scrollView{
     _scrollView = scrollView;
     if (_scrollView) {
-       
+        self.frame = CGRectMake(0, -HqRefrshPullY, _scrollView.bounds.size.width, HqRefrshPullY);
         [_scrollView addSubview:self];
          [_scrollView addObserver:self forKeyPath:HqObserveKeyPath options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
-        CGFloat offsetY = _scrollView.contentOffset.y;
     }
 }
 - (void)setup{
@@ -79,8 +78,9 @@
     if (!_indictatorView) {
         _indictatorView = [[UIActivityIndicatorView alloc] init];
         _indictatorView.color = self.refreshColor;
-        CGFloat Y = self.bounds.size.height/2.0;
-        CGPoint center = CGPointMake(self.center.x, Y);
+        CGFloat Y = HqRefrshPullY/2.0;
+        CGFloat X = [UIScreen mainScreen].bounds.size.width/2.0;
+        CGPoint center = CGPointMake(X, Y);
         _indictatorView.center = center;
     }
     return _indictatorView;
@@ -93,9 +93,10 @@
         _pathLayer.strokeStart = 0;
         _pathLayer.lineWidth = 2;
         UIBezierPath *path = [UIBezierPath bezierPath];
-        CGFloat Y = self.bounds.size.height/2.0;
+        CGFloat Y = HqRefrshPullY/2.0;
         CGFloat radius = Y-15;
-        CGPoint center = CGPointMake(self.center.x, Y);
+        CGFloat X = [UIScreen mainScreen].bounds.size.width/2.0;
+        CGPoint center = CGPointMake(X, Y);
         [path addArcWithCenter:center radius:radius startAngle:0 endAngle:2*M_PI clockwise:YES];
         _pathLayer.path = path.CGPath;
         _pathLayer.strokeEnd = 0;
@@ -139,6 +140,7 @@
         }
     }
 }
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

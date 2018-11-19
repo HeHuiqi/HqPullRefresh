@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "HqRefreshHeader.h"
+#define HqRandomColor [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1]
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableView;
@@ -21,7 +22,7 @@
 
 - (HqRefreshHeader *)rh{
     if (!_rh) {
-        _rh = [[HqRefreshHeader alloc] initWithFrame:CGRectMake(0, -60, self.view.bounds.size.width, 60)];
+        _rh = [[HqRefreshHeader alloc] init];
     }
     return _rh;
 }
@@ -57,14 +58,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"HQPullRefresh";
-    
+    UILabel *topView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 200)];
+    topView.backgroundColor = HqRandomColor;
+    [self.view addSubview:topView];
+    CGFloat y = CGRectGetMaxY(topView.frame);
+    self.tableView.frame = CGRectMake(0, y, self.view.bounds.size.width, self.view.bounds.size.height-y);
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.titles = [NSMutableArray arrayWithArray:@[@"1",@"2",@"3"]];
     [self.view addSubview:self.tableView];
     UILabel *header =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
     header.text = @"这是表头";
     header.textAlignment = NSTextAlignmentCenter;
-    header.backgroundColor = [UIColor redColor];
+    header.backgroundColor = HqRandomColor;
     self.tableView.tableHeaderView = header;
     
     self.rh.scrollView = self.tableView;
