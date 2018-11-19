@@ -58,7 +58,7 @@
     [super viewDidLoad];
     self.title = @"HQPullRefresh";
     
-//    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.titles = [NSMutableArray arrayWithArray:@[@"1",@"2",@"3"]];
     [self.view addSubview:self.tableView];
     UILabel *header =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];

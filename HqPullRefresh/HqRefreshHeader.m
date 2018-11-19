@@ -31,7 +31,6 @@
         [_scrollView addSubview:self];
          [_scrollView addObserver:self forKeyPath:HqObserveKeyPath options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
         CGFloat offsetY = _scrollView.contentOffset.y;
-        NSLog(@"offsetY-init= %@",@(offsetY));
     }
 }
 - (void)setup{
@@ -114,6 +113,8 @@
         //NSLog(@"offsetY= %@",@(offsetY));
         if (self.initOffsetY==0) {
             self.initOffsetY = offsetY;
+            NSLog(@"self.initOffsetY-init == %@",@(self.initOffsetY));
+
         }
 
         if (offsetY<self.initOffsetY) {
