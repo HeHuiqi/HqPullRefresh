@@ -78,6 +78,7 @@
 - (UIActivityIndicatorView *)indictatorView{
     if (!_indictatorView) {
         _indictatorView = [[UIActivityIndicatorView alloc] init];
+        _indictatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
         _indictatorView.color = self.refreshColor;
         CGFloat Y = HqRefreshLoadingY/2.0;
         CGFloat X = [UIScreen mainScreen].bounds.size.width/2.0;
