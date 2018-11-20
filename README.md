@@ -1,10 +1,10 @@
 # HqPullRefresh
-
+简答快捷的下拉刷新、上拉加载组件,快速集成
 ## 使用方式
 ```
 - (HqRefreshHeader *)rh{
     if (!_rh) {
-        _rh = [[HqRefreshHeader alloc] initWithFrame:CGRectMake(0, -60, self.view.bounds.size.width, 60)];
+        _rh = [[HqRefreshHeader alloc] init];
     }
     return _rh;
 }
