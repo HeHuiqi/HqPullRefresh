@@ -16,21 +16,28 @@
     注意：如果设置tableView的位置不是self.view.bounds,请设置UIViewController的一下属性
     self.automaticallyAdjustsScrollViewInsets = NO;
 */
-self.rh.scrollView = self.tableView;
-    __weak typeof(self) weakSelf = self;
-    self.rh.beginRefreshBlock = ^{
-        //模拟请求
+//下拉刷新
+   self.rh.scrollView = self.tableView;
+   self.rh.beginRefreshBlock  = ^{
+       //模拟请求
        // NSLog(@"请求网络数据。。。");
-        for (int i = 0; i<3; i++) {
-            NSString *number = [NSString stringWithFormat:@"%d",arc4random_uniform(256)];
-            [weakSelf.titles addObject:number];
-        }
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+       __strong typeof(weakSelf) strongSelf = weakSelf;
+       NSMutableArray *newData = [NSMutableArray arrayWithCapacity:0];
+       for (int i = 0; i<5; i++) {
+           [newData addObject:@(i).stringValue];
+       }
+
+       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+           //注意这里要先结束刷新，在更新界面
+           [strongSelf.rh endRefreshing];
+
            // NSLog(@"请求完成了，刷新界面");
-            [weakSelf.rh endRefreshing];
-            [weakSelf.tableView reloadData];
-        });
-    };
+           [strongSelf.titles removeAllObjects];
+           strongSelf.titles = newData;
+           [strongSelf.tableView reloadData];
+
+       });
+   };
 
 ```
 ### 详情使用参考代码
