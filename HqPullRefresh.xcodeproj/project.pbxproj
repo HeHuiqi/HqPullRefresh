@@ -14,6 +14,7 @@
 		15AF25DC21A2A3CC00D1E2E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15AF25DA21A2A3CC00D1E2E3 /* LaunchScreen.storyboard */; };
 		15AF25DF21A2A3CC00D1E2E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF25DE21A2A3CC00D1E2E3 /* main.m */; };
 		15AF25E721A2A73C00D1E2E3 /* HqRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF25E621A2A73C00D1E2E3 /* HqRefreshHeader.m */; };
+		15AF25EA21A3A1C400D1E2E3 /* HqRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF25E921A3A1C400D1E2E3 /* HqRefreshFooter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,9 @@
 		15AF25DE21A2A3CC00D1E2E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		15AF25E521A2A73C00D1E2E3 /* HqRefreshHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HqRefreshHeader.h; sourceTree = "<group>"; };
 		15AF25E621A2A73C00D1E2E3 /* HqRefreshHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HqRefreshHeader.m; sourceTree = "<group>"; };
+		15AF25E821A3A1C400D1E2E3 /* HqRefreshFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HqRefreshFooter.h; sourceTree = "<group>"; };
+		15AF25E921A3A1C400D1E2E3 /* HqRefreshFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HqRefreshFooter.m; sourceTree = "<group>"; };
+		15AF25EB21A3A30900D1E2E3 /* HqRefreshProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HqRefreshProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +65,11 @@
 		15AF25CE21A2A3CB00D1E2E3 /* HqPullRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				15AF25EC21A3D81C00D1E2E3 /* HqRefresh */,
 				15AF25CF21A2A3CB00D1E2E3 /* AppDelegate.h */,
 				15AF25D021A2A3CB00D1E2E3 /* AppDelegate.m */,
 				15AF25D221A2A3CB00D1E2E3 /* ViewController.h */,
 				15AF25D321A2A3CB00D1E2E3 /* ViewController.m */,
-				15AF25E521A2A73C00D1E2E3 /* HqRefreshHeader.h */,
-				15AF25E621A2A73C00D1E2E3 /* HqRefreshHeader.m */,
 				15AF25D521A2A3CB00D1E2E3 /* Main.storyboard */,
 				15AF25D821A2A3CC00D1E2E3 /* Assets.xcassets */,
 				15AF25DA21A2A3CC00D1E2E3 /* LaunchScreen.storyboard */,
@@ -74,6 +77,18 @@
 				15AF25DE21A2A3CC00D1E2E3 /* main.m */,
 			);
 			path = HqPullRefresh;
+			sourceTree = "<group>";
+		};
+		15AF25EC21A3D81C00D1E2E3 /* HqRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				15AF25E821A3A1C400D1E2E3 /* HqRefreshFooter.h */,
+				15AF25E921A3A1C400D1E2E3 /* HqRefreshFooter.m */,
+				15AF25E521A2A73C00D1E2E3 /* HqRefreshHeader.h */,
+				15AF25E621A2A73C00D1E2E3 /* HqRefreshHeader.m */,
+				15AF25EB21A3A30900D1E2E3 /* HqRefreshProtocol.h */,
+			);
+			path = HqRefresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15AF25D421A2A3CB00D1E2E3 /* ViewController.m in Sources */,
+				15AF25EA21A3A1C400D1E2E3 /* HqRefreshFooter.m in Sources */,
 				15AF25E721A2A73C00D1E2E3 /* HqRefreshHeader.m in Sources */,
 				15AF25DF21A2A3CC00D1E2E3 /* main.m in Sources */,
 				15AF25D121A2A3CB00D1E2E3 /* AppDelegate.m in Sources */,

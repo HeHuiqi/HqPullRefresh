@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#define HqRefrshPullY 64
+#import "HqRefreshProtocol.h"
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^HqBeginRefreshBlock)(void);
 @interface HqRefreshHeader : UIView

@@ -7,7 +7,6 @@
 //
 
 #import "HqRefreshHeader.h"
-#define HqObserveKeyPath @"contentOffset"
 @interface HqRefreshHeader()<UIScrollViewDelegate>
 @property (nonatomic,assign) CGFloat initOffsetY;
 
@@ -15,7 +14,7 @@
 @implementation HqRefreshHeader
 - (void)dealloc{
     if (_scrollView) {
-        [_scrollView removeObserver:self forKeyPath:HqObserveKeyPath];
+        [_scrollView removeObserver:self forKeyPath:HqContentOffsetKeyPath];
     }
 }
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -27,14 +26,14 @@
 - (void)setScrollView:(UIScrollView *)scrollView{
     _scrollView = scrollView;
     if (_scrollView) {
-        self.frame = CGRectMake(0, -HqRefrshPullY, _scrollView.bounds.size.width, HqRefrshPullY);
+        self.frame = CGRectMake(0, -HqRefreshPullY, _scrollView.bounds.size.width, HqRefreshPullY);
         [_scrollView addSubview:self];
-         [_scrollView addObserver:self forKeyPath:HqObserveKeyPath options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
+         [_scrollView addObserver:self forKeyPath:HqContentOffsetKeyPath options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
     }
 }
 - (void)setup{
     self.initOffsetY = 0;
-    self.refreshColor = [UIColor colorWithRed:63.0/255.0 green:124.0/255.0 blue:221.0/255.0 alpha:1.0];
+    self.refreshColor = [UIColor colorWithRed:71.0/255.0 green:144.0/255.0 blue:211.0/255.0 alpha:1.0];
     self.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self.layer addSublayer:self.pathLayer];
     [self addSubview:self.indictatorView];
@@ -54,15 +53,10 @@
 }
 - (void)endRefreshing{
     [self.indictatorView stopAnimating];
-    NSLog(@"self.initOffsetY == %@",@(self.initOffsetY));
     [UIView animateWithDuration:0.3 animations:^{
-        if (self.initOffsetY != 0) {
-            [self.scrollView setContentOffset:CGPointMake(0, self.initOffsetY)  animated:NO];
+       
+        [self.scrollView setContentOffset:CGPointMake(0, 0)  animated:NO];
 
-        }else{
-            [self.scrollView setContentOffset:CGPointMake(0, 0)  animated:NO];
-
-        }
         self.pullScale = 0;
     } completion:^(BOOL finished) {
 
@@ -78,7 +72,7 @@
     if (!_indictatorView) {
         _indictatorView = [[UIActivityIndicatorView alloc] init];
         _indictatorView.color = self.refreshColor;
-        CGFloat Y = HqRefrshPullY/2.0;
+        CGFloat Y = HqRefreshPullY/2.0;
         CGFloat X = [UIScreen mainScreen].bounds.size.width/2.0;
         CGPoint center = CGPointMake(X, Y);
         _indictatorView.center = center;
@@ -93,7 +87,7 @@
         _pathLayer.strokeStart = 0;
         _pathLayer.lineWidth = 2;
         UIBezierPath *path = [UIBezierPath bezierPath];
-        CGFloat Y = HqRefrshPullY/2.0;
+        CGFloat Y = HqRefreshPullY/2.0;
         CGFloat radius = Y-15;
         CGFloat X = [UIScreen mainScreen].bounds.size.width/2.0;
         CGPoint center = CGPointMake(X, Y);
@@ -109,25 +103,25 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    if ([keyPath isEqualToString:HqObserveKeyPath]) {
+    if ([keyPath isEqualToString:HqContentOffsetKeyPath]) {
         CGFloat offsetY = self.scrollView.contentOffset.y;
         //NSLog(@"offsetY= %@",@(offsetY));
         if (self.initOffsetY==0) {
             self.initOffsetY = offsetY;
-            NSLog(@"self.initOffsetY-init == %@",@(self.initOffsetY));
+            //NSLog(@"self.initOffsetY-init == %@",@(self.initOffsetY));
 
         }
 
-        if (offsetY<self.initOffsetY) {
+        if (offsetY<=self.initOffsetY) {
             if (self.isRefreshing) {
                 return;
             }
-            CGFloat pullScale = fabs(offsetY-self.initOffsetY)/HqRefrshPullY;
+            CGFloat pullScale = fabs(offsetY-self.initOffsetY)/HqRefreshPullY;
             self.pullScale =pullScale;
             //NSLog(@"pullScale= %@",@(pullScale));
-            if (pullScale >= 1.0) {
+            if (fabs(offsetY)>=HqRefreshPullY) {
                 if (!self.scrollView.dragging) {
-                    [self.scrollView setContentOffset:CGPointMake(0, -HqRefrshPullY+self.initOffsetY) animated:YES];
+                    [self.scrollView setContentOffset:CGPointMake(0, -HqRefreshPullY) animated:YES];
                     [self beginRefreshing];
                 }else{
                     
