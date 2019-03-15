@@ -9,7 +9,8 @@
 #import "ViewController.h"
 #import "HqRefreshHeader.h"
 #import "HqRefreshFooter.h"
-
+#import "HqShadowView.h"
+#import "HqBarButtonItem.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -66,9 +67,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"HQPullRefresh";
+- (void)hqRefresh{
     UILabel *topView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 200)];
     topView.backgroundColor = HqRandomColor;
     topView.text = @"这是顶部";
@@ -77,12 +76,12 @@
     [self.view addSubview:topView];
     CGFloat y = CGRectGetMaxY(topView.frame);
     self.tableView.frame = CGRectMake(0, y, self.view.bounds.size.width, self.view.bounds.size.height-y);
-  
-
-
+    
+    
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.titles = [NSMutableArray arrayWithCapacity:0];
-
+    
     for (int i = 0; i<5; i++) {
         [self.titles addObject:@(i).stringValue];
     }
@@ -100,9 +99,9 @@
     footer.backgroundColor = HqRandomColor;
     self.tableView.tableHeaderView = header;
     self.tableView.tableFooterView = footer;
-
+    
     __weak typeof(self) weakSelf = self;
-
+    
     
     //下拉刷新
     self.rh.scrollView = self.tableView;
@@ -114,16 +113,16 @@
         for (int i = 0; i<5; i++) {
             [newData addObject:@(i).stringValue];
         }
-      
+        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             //注意这里要先结束刷新，在更新界面
             [strongSelf.rh endRefreshing];
-
+            
             // NSLog(@"请求完成了，刷新界面");
             [strongSelf.titles removeAllObjects];
             strongSelf.titles = newData;
             [strongSelf.tableView reloadData];
-
+            
         });
     };
     
@@ -132,22 +131,43 @@
     self.rf.scrollView = self.tableView;
     self.rf.beginLoadingBlock  = ^{
         //模拟请求
-       // NSLog(@"请求网络数据。。。");
+        // NSLog(@"请求网络数据。。。");
         __strong typeof(weakSelf) strongSelf = weakSelf;
         for (int i = 0; i<3; i++) {
             [strongSelf.titles addObject:@(i).stringValue];
         }
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [strongSelf.rf endRefreshing];
-
-           // NSLog(@"请求完成了，刷新界面");
+            
+            // NSLog(@"请求完成了，刷新界面");
             [strongSelf.tableView reloadData];
         });
     };
     
+}
+- (void)hqShadowView{
+    HqShadowView *shd = [[HqShadowView  alloc] initWithFrame:CGRectMake(50, 120, 120, 120)];
+    shd.backgroundColor = [UIColor redColor];
+//    shd.clipsToBounds = YES;
+    shd.layer.cornerRadius = 5;
+    [self.view addSubview:shd];
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"HQPullRefresh";
+  
+    HqBarButtonItem  *item = [[HqBarButtonItem alloc] initWithNormalTitle:@"Edit" seletedTitle:@"Save"];
+    [item addTarget:self action:@selector(itemClick:)];
+    self.navigationItem.rightBarButtonItem = item;
+    [self hqShadowView];
     
     
 }
-
+- (void)itemClick:(HqBarButtonItem *)item{
+    item.selected = !item.selected;
+}
+- (void)btnClick:(UIButton *)btn{
+    btn.selected = !btn.selected;
+}
 
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15501EB121ABE6BD0034FBB5 /* HqShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15501EB021ABE6BD0034FBB5 /* HqShadowView.m */; };
+		158411DF21C7B04900772A14 /* HqDecimalNumberUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 158411DD21C7B04900772A14 /* HqDecimalNumberUtils.m */; };
 		15AF25D121A2A3CB00D1E2E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF25D021A2A3CB00D1E2E3 /* AppDelegate.m */; };
 		15AF25D421A2A3CB00D1E2E3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF25D321A2A3CB00D1E2E3 /* ViewController.m */; };
 		15AF25D721A2A3CB00D1E2E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15AF25D521A2A3CB00D1E2E3 /* Main.storyboard */; };
@@ -15,9 +17,14 @@
 		15AF25DF21A2A3CC00D1E2E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF25DE21A2A3CC00D1E2E3 /* main.m */; };
 		15AF25E721A2A73C00D1E2E3 /* HqRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF25E621A2A73C00D1E2E3 /* HqRefreshHeader.m */; };
 		15AF25EA21A3A1C400D1E2E3 /* HqRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF25E921A3A1C400D1E2E3 /* HqRefreshFooter.m */; };
+		15F0D6C921B52E130036FC30 /* HqBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F0D6C821B52E130036FC30 /* HqBarButtonItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15501EAF21ABE6BD0034FBB5 /* HqShadowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HqShadowView.h; sourceTree = "<group>"; };
+		15501EB021ABE6BD0034FBB5 /* HqShadowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HqShadowView.m; sourceTree = "<group>"; };
+		158411DD21C7B04900772A14 /* HqDecimalNumberUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HqDecimalNumberUtils.m; sourceTree = "<group>"; };
+		158411DE21C7B04900772A14 /* HqDecimalNumberUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HqDecimalNumberUtils.h; sourceTree = "<group>"; };
 		15AF25CC21A2A3CB00D1E2E3 /* HqPullRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HqPullRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15AF25CF21A2A3CB00D1E2E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		15AF25D021A2A3CB00D1E2E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -33,6 +40,8 @@
 		15AF25E821A3A1C400D1E2E3 /* HqRefreshFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HqRefreshFooter.h; sourceTree = "<group>"; };
 		15AF25E921A3A1C400D1E2E3 /* HqRefreshFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HqRefreshFooter.m; sourceTree = "<group>"; };
 		15AF25EB21A3A30900D1E2E3 /* HqRefreshProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HqRefreshProtocol.h; sourceTree = "<group>"; };
+		15F0D6C721B52E130036FC30 /* HqBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HqBarButtonItem.h; sourceTree = "<group>"; };
+		15F0D6C821B52E130036FC30 /* HqBarButtonItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HqBarButtonItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		158411DC21C7B04900772A14 /* HqDecimalNumberUtils */ = {
+			isa = PBXGroup;
+			children = (
+				158411DE21C7B04900772A14 /* HqDecimalNumberUtils.h */,
+				158411DD21C7B04900772A14 /* HqDecimalNumberUtils.m */,
+			);
+			path = HqDecimalNumberUtils;
+			sourceTree = "<group>";
+		};
 		15AF25C321A2A3CB00D1E2E3 = {
 			isa = PBXGroup;
 			children = (
@@ -65,11 +83,16 @@
 		15AF25CE21A2A3CB00D1E2E3 /* HqPullRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				158411DC21C7B04900772A14 /* HqDecimalNumberUtils */,
 				15AF25EC21A3D81C00D1E2E3 /* HqRefresh */,
 				15AF25CF21A2A3CB00D1E2E3 /* AppDelegate.h */,
 				15AF25D021A2A3CB00D1E2E3 /* AppDelegate.m */,
 				15AF25D221A2A3CB00D1E2E3 /* ViewController.h */,
 				15AF25D321A2A3CB00D1E2E3 /* ViewController.m */,
+				15F0D6C721B52E130036FC30 /* HqBarButtonItem.h */,
+				15F0D6C821B52E130036FC30 /* HqBarButtonItem.m */,
+				15501EAF21ABE6BD0034FBB5 /* HqShadowView.h */,
+				15501EB021ABE6BD0034FBB5 /* HqShadowView.m */,
 				15AF25D521A2A3CB00D1E2E3 /* Main.storyboard */,
 				15AF25D821A2A3CC00D1E2E3 /* Assets.xcassets */,
 				15AF25DA21A2A3CC00D1E2E3 /* LaunchScreen.storyboard */,
@@ -162,8 +185,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				15AF25D421A2A3CB00D1E2E3 /* ViewController.m in Sources */,
+				15F0D6C921B52E130036FC30 /* HqBarButtonItem.m in Sources */,
 				15AF25EA21A3A1C400D1E2E3 /* HqRefreshFooter.m in Sources */,
+				158411DF21C7B04900772A14 /* HqDecimalNumberUtils.m in Sources */,
 				15AF25E721A2A73C00D1E2E3 /* HqRefreshHeader.m in Sources */,
+				15501EB121ABE6BD0034FBB5 /* HqShadowView.m in Sources */,
 				15AF25DF21A2A3CC00D1E2E3 /* main.m in Sources */,
 				15AF25D121A2A3CB00D1E2E3 /* AppDelegate.m in Sources */,
 			);

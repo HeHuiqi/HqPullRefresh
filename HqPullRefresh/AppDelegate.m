@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
-
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <CoreTelephony/CTCarrier.h>
+#import "HqDecimalNumberUtils.h"
 @interface AppDelegate ()
 
 @end
@@ -16,7 +18,24 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+//    CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc]init];
+    
+//    CTCarrier *carrier = [info subscriberCellularProvider];
+//    NSLog(@"carrier:%@", [carrier description]);
+//    NSLog(@"carrierName=%@",carrier.carrierName);
+//    NSLog(@"mobileNetworkCode=%@",carrier.mobileNetworkCode);
+//    NSLog(@"mobileCountryCode=%@",carrier.mobileCountryCode);
+//    NSLog(@"isoCountryCode=%@",carrier.isoCountryCode);
+//    NSLog(@"allowsVOIP=%d",carrier.allowsVOIP);
+ 
+    NSLog(@"--------%@",@(@"85.6".doubleValue));
+    NSLog(@"--------%f",@"85.6".doubleValue);
+    NSString *num = [HqDecimalNumberUtils addNumber1:@"1.6" nummber2:@"2.9"];
+    NSString *num1 = [HqDecimalNumberUtils multiplyNumber1:@"2.0" nummber2:@"2.4"];
+    NSLog(@"m-%@,m1=%@",num,num1);
+
+
+
     return YES;
 }
 
